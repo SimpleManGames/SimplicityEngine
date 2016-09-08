@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "Core\Core.vcxproj", "{F59EEF98-A9F8-4A2C-9726-324D81DE7409}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Engine", "1. Engine", "{DFD2F331-7703-41DA-AEB2-C13BE1C634B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Externals", "2. Externals", "{A1BF8557-2E99-40EA-A62B-621B96D8CCF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Game", "3. Game", "{E028AFA2-2A6E-4FED-85F6-F21D298C8D92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Tools", "4. Tools", "{5A327231-7751-4DC7-B88D-FF278E92B8AD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj", "{699C7A41-C4F4-49EA-B1F4-B4FFCF87ACCF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F59EEF98-A9F8-4A2C-9726-324D81DE7409} = {F59EEF98-A9F8-4A2C-9726-324D81DE7409}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F59EEF98-A9F8-4A2C-9726-324D81DE7409}.Debug|x86.ActiveCfg = Debug|Win32
+		{F59EEF98-A9F8-4A2C-9726-324D81DE7409}.Debug|x86.Build.0 = Debug|Win32
+		{F59EEF98-A9F8-4A2C-9726-324D81DE7409}.Release|x86.ActiveCfg = Release|Win32
+		{F59EEF98-A9F8-4A2C-9726-324D81DE7409}.Release|x86.Build.0 = Release|Win32
+		{699C7A41-C4F4-49EA-B1F4-B4FFCF87ACCF}.Debug|x86.ActiveCfg = Debug|Win32
+		{699C7A41-C4F4-49EA-B1F4-B4FFCF87ACCF}.Debug|x86.Build.0 = Debug|Win32
+		{699C7A41-C4F4-49EA-B1F4-B4FFCF87ACCF}.Release|x86.ActiveCfg = Release|Win32
+		{699C7A41-C4F4-49EA-B1F4-B4FFCF87ACCF}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F59EEF98-A9F8-4A2C-9726-324D81DE7409} = {DFD2F331-7703-41DA-AEB2-C13BE1C634B7}
+		{699C7A41-C4F4-49EA-B1F4-B4FFCF87ACCF} = {E028AFA2-2A6E-4FED-85F6-F21D298C8D92}
+	EndGlobalSection
+EndGlobal
