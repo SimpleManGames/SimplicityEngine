@@ -110,19 +110,18 @@ int Engine::Initialize() {
 }
 void Engine::Draw() {
 	Graphics* graphics = dynamic_cast< Graphics* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::GRAPHICS_SYSTEM ) );
-	//graphics->BeginDraw();
 
 	for( System* system : Singleton<SystemManager>::GetInstance().getDrawableSystems() ) {
 		IDrawable* drawable_system = dynamic_cast< IDrawable* >( system );
 		if( drawable_system->GetCanDraw() )
 			drawable_system->Draw();
 	}
-
-	//graphics->EndDraw();
 }
 void Engine::Update() {
 	for( System* system : Singleton<SystemManager>::GetInstance().getSystems() )
 		system->Update();
+
+	Singleton<SceneManager>::GetInstance().Update();
 }
 int Engine::ShutDown() {
 	if( !DestroyManagers() )

@@ -13,32 +13,20 @@
 MyScene::MyScene()
 	:Scene( _T( "MyScene" ) )
 	, rectangle( nullptr )
-	, circle( nullptr ) {
-	
-	input = dynamic_cast< Input* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::INPUT_SYSTEM ) );
-}
+	, circle( nullptr ) {}
 MyScene::~MyScene() {}
 
 bool MyScene::Initialize() {
-	this->rectangle = new SceneObject();
-	RectShape* rect_shape = new RectShape( 10, 10, 100, 100 );
-	rect_shape->SetColor( Color( 1, 0, 0 ) );
-	this->rectangle->AddComponent( new ShapeComponent( rect_shape ) ); // Ownership of the " RectShape " is transferred to the " ShapeComponent ".
-	AddGameObject( this->rectangle );
-	this->circle = new SceneObject();
-	CircleShape* circle_shape = new CircleShape( 500, 500, 100 );
-	circle_shape->SetColor( Color( 0, 0, 1 ) );
-	this->circle->AddComponent( new ShapeComponent( circle_shape ) ); // Ownership of the " CircleShape " is transferred to the " ShapeComponent ".
-	AddGameObject( this->circle );
-
+	input = dynamic_cast< Input* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::INPUT_SYSTEM ) );
 	triangle = new SceneObject();
 	this->triangle->AddComponent( new RenderComponent( MakeGeometry( verts, 3, tris, 3 ), MakeShader( vertS, fragS ) ) );
 	AddGameObject( this->triangle );
 
 	return Scene::Initialize();
 }
-void MyScene::update() {
-	
+void MyScene::Update() {
+	if( input->GetKeyState( 'A' ) == KeyState::DOWN )
+		Singleton<Logger>::GetInstance().Log( _T( "Input Update" ), LOGTYPE_INFO );
 
 	Scene::Update();
 }

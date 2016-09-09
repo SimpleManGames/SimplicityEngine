@@ -13,7 +13,7 @@ public:
 	virtual ~MyScene();
 
 	virtual bool Initialize();
-	virtual void update();
+	virtual void Update();
 	virtual bool Shutdown();
 
 private:
