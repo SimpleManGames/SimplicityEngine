@@ -8,7 +8,7 @@
 float MainTimer::deltaTime = 0.0f;
 
 MainTimer::MainTimer()
-	:System( SystemType::TIMER_SYSTEM ) {}
+	: System( SystemType::TIMER_SYSTEM ) {}
 MainTimer::~MainTimer() {}
 
 bool MainTimer::Initialize() {

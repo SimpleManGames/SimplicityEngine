@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\System\Input.cpp" />
     <ClCompile Include="src\SceneGraph\Component\RenderComponent.cpp" />
     <ClCompile Include="src\Core\Engine.cpp" />
     <ClCompile Include="src\Core\Game\AbstractGame.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="include\Core\Settings\Settings.h" />
     <ClInclude Include="include\Core\Settings\WorldSettings.h" />
     <ClInclude Include="include\Core\System\Graphics.h" />
+    <ClInclude Include="include\Core\System\Input.h" />
     <ClInclude Include="include\Core\System\Logic.h" />
     <ClInclude Include="include\Core\System\MainTimer.h" />
     <ClInclude Include="include\Core\System\MainWindow.h" />
@@ -88,6 +90,7 @@
     <ClInclude Include="include\Defines\shader.h" />
     <ClInclude Include="include\Defines\string.h" />
     <ClInclude Include="include\Defines\stringstream.h" />
+    <ClInclude Include="include\Defines\Types\InputType.h" />
     <ClInclude Include="include\Defines\Types\LogType.h" />
     <ClInclude Include="include\Defines\Types\ResourceType.h" />
     <ClInclude Include="include\Defines\Types\SystemType.h" />

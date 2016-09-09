@@ -2,7 +2,7 @@
 #define _MYSCENE_H
 
 #include "SceneGraph/Scene/Scene.h"
-
+#include "Core\System\Input.h"
 #include "Defines\vertex.h"
 
 class SceneObject;
@@ -17,6 +17,7 @@ public:
 	virtual bool Shutdown();
 
 private:
+	Input * input;
 
 	SceneObject* rectangle;
 	SceneObject* circle;

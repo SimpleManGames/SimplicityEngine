@@ -34,6 +34,8 @@ public:
 	HWND getWindowHandle() const;
 	HINSTANCE getWindowInstance() const;
 
+	struct GLFWwindow * GetWindowHandle() const { return winHandle; }
+
 protected:
 	bool MakeWindow();
 	bool MakeGLWindow();
@@ -51,6 +53,7 @@ protected:
 
 	void SetWindowWidth(long width);
 	void SetWindowHeight(long height);
+
 
 private:
 	bool SetupWindow();

@@ -5,12 +5,18 @@
 #include "SceneGraph/Object/Objects/Shapes/CircleShape.h"
 #include "SceneGraph\Component\RenderComponent.h"
 #include "SceneGraph/Component/ShapeComponent.h"
+
 #include "Core\Rendering\crenderutils.h"
+
+#include "Core\System\Manager\SystemManager.h"
 
 MyScene::MyScene()
 	:Scene( _T( "MyScene" ) )
 	, rectangle( nullptr )
-	, circle( nullptr ) {}
+	, circle( nullptr ) {
+	
+	input = dynamic_cast< Input* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::INPUT_SYSTEM ) );
+}
 MyScene::~MyScene() {}
 
 bool MyScene::Initialize() {
@@ -32,6 +38,8 @@ bool MyScene::Initialize() {
 	return Scene::Initialize();
 }
 void MyScene::update() {
+	
+
 	Scene::Update();
 }
 bool MyScene::Shutdown() {

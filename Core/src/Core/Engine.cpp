@@ -11,6 +11,7 @@
 #include "Core\System\MainWindow.h"
 #include "Core\System\Graphics.h"
 #include "Core\System\MainTimer.h"
+#include "Core\System\Input.h"
 
 #include "Core/System/Manager/SystemManager.h"
 #include "Defines/Types/SystemType.h"
@@ -85,6 +86,9 @@ int Engine::Initialize() {
 	Graphics* graphics = dynamic_cast< Graphics* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::GRAPHICS_SYSTEM ) );
 	if( graphics == nullptr )
 		return FALSE;
+	Input* input = dynamic_cast< Input* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::INPUT_SYSTEM ) );
+	if( input == nullptr )
+		return false;
 	Logic* logic = dynamic_cast< Logic* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::LOGIC_SYSTEM ) );
 	if( logic == nullptr )
 		return FALSE;
@@ -94,6 +98,8 @@ int Engine::Initialize() {
 	if( !timer->Initialize() )
 		return FALSE;
 	if( !graphics->Initialize() )
+		return FALSE;
+	if( !input->Initialize() )
 		return FALSE;
 
 	logic->SetGame( this->game );
