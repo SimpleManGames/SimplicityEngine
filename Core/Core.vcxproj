@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\SceneGraph\Component\RenderComponent.cpp" />
     <ClCompile Include="src\Core\Engine.cpp" />
     <ClCompile Include="src\Core\Game\AbstractGame.cpp" />
     <ClCompile Include="src\Core\Game\Game.cpp" />
+    <ClCompile Include="src\Core\Rendering\crenderutils.cpp" />
     <ClCompile Include="src\Core\Settings\ApplicationSettings.cpp" />
     <ClCompile Include="src\Core\Settings\GameSettings.cpp" />
     <ClCompile Include="src\Core\Settings\PhyxSettings.cpp" />
@@ -43,7 +45,7 @@
     <ClCompile Include="src\Interfaces\IDrawable.cpp" />
     <ClCompile Include="src\Interfaces\IFillableShape.cpp" />
     <ClCompile Include="src\Interfaces\IWindow.cpp" />
-    <ClCompile Include="src\Rendering\Renderer.cpp" />
+    <ClCompile Include="src\Core\Rendering\Renderer.cpp" />
     <ClCompile Include="src\SceneGraph\Component\Component.cpp" />
     <ClCompile Include="src\SceneGraph\Component\ShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Object.cpp" />
@@ -61,6 +63,7 @@
   <ItemGroup>
     <ClInclude Include="include\Core\Engine.h" />
     <ClInclude Include="include\Core\Game\AbstractGame.h" />
+    <ClInclude Include="include\Core\Rendering\crenderutils.h" />
     <ClInclude Include="include\Core\Rendering\Renderer.h" />
     <ClInclude Include="include\Core\Settings\ApplicationSettings.h" />
     <ClInclude Include="include\Core\Settings\GameSettings.h" />
@@ -79,13 +82,16 @@
     <ClInclude Include="include\Defines\deletemacro.h" />
     <ClInclude Include="include\Defines\deletemacros.h" />
     <ClInclude Include="include\Defines\fstream.h" />
+    <ClInclude Include="include\Defines\geometry.h" />
     <ClInclude Include="include\Defines\iostream.h" />
     <ClInclude Include="include\Defines\programdefaults.h" />
+    <ClInclude Include="include\Defines\shader.h" />
     <ClInclude Include="include\Defines\string.h" />
     <ClInclude Include="include\Defines\stringstream.h" />
     <ClInclude Include="include\Defines\Types\LogType.h" />
     <ClInclude Include="include\Defines\Types\ResourceType.h" />
     <ClInclude Include="include\Defines\Types\SystemType.h" />
+    <ClInclude Include="include\Defines\vertex.h" />
     <ClInclude Include="include\Diagnostics\Logger.h" />
     <ClInclude Include="include\Engine.h" />
     <ClInclude Include="include\Core\Game\Game.h" />
@@ -100,6 +106,7 @@
     <ClInclude Include="include\Interfaces\IFillableShape.h" />
     <ClInclude Include="include\Interfaces\IWindow.h" />
     <ClInclude Include="include\SceneGraph\Component\Component.h" />
+    <ClInclude Include="include\SceneGraph\Component\RenderComponent.h" />
     <ClInclude Include="include\SceneGraph\Component\ShapeComponent.h" />
     <ClInclude Include="include\SceneGraph\Object.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\GameObject.h" />
@@ -184,16 +191,32 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
     </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)dep\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
     </ClCompile>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dep\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -202,12 +225,21 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)dep\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -216,12 +248,19 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dep\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

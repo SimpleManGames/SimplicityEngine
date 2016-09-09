@@ -7,6 +7,10 @@
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\ApplicationSettings.h"
 
+#define GLEW_STATIC
+#include "GLEW\glew.h"
+#include "GLFW\glfw3.h"
+
 IWindow::IWindow()
 	: hDC( 0 )
 	, hWindow( 0 )
@@ -53,16 +57,40 @@ bool IWindow::MakeWindow() {
 		Singleton<Logger>::GetInstance().Log( _T( "Register \"WNDCLASS\" failed." ), LOGTYPE_ERROR );
 		return FALSE;
 	}
+	glfwInit();
 
 	if( !SetupWindow() )
 		return FALSE;
 	if( !ErrorHandling() )
 		return FALSE;
 
+
+	if( !( hglrc = wglCreateContext( hDC ) ) ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Failed to create the OpenGL RC" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+
+	if( !( wglMakeCurrent( hDC, hglrc ) ) ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Failed to make OpenGL RC current" ), LOGTYPE_ERROR );
+	}
+
+	glewExperimental = true;
+	glewInit();
+	glClearColor( 1.0f, 0.5f, 0.5f, 1.0f );
+
 	ShowWindow( this->hWindow, SW_SHOW );
 	SetForegroundWindow( this->hWindow );
 	SetFocus( this->hWindow );
 
+	return TRUE;
+}
+bool IWindow::MakeGLWindow() {
+	glfwInit();
+	winHandle = glfwCreateWindow( GetWindowWidth(), GetWindowHeight(), "Test", nullptr, nullptr );
+	glfwMakeContextCurrent( winHandle );
+	glewExperimental = true;
+	glewInit();
+	glClearColor( 0.5f, 0.5f, 0.5f, 1.0f );
 	return TRUE;
 }
 bool IWindow::TerminateWindow() {
@@ -96,23 +124,13 @@ const POINT IWindow::GetCenterPosition() const {
 	};
 }
 
-void IWindow::SetExtendedStyle( DWORD extendedStyle ) {
-	this->extendedStyle = extendedStyle;
-}
-void IWindow::SetStyle( DWORD style ) {
-	this->style = style;
-}
+void IWindow::SetExtendedStyle( DWORD extendedStyle ) { this->extendedStyle = extendedStyle; }
+void IWindow::SetStyle( DWORD style ) { this->style = style; }
 
-DWORD IWindow::GetExtentedStyle() const {
-	return this->extendedStyle;
-}
-DWORD IWindow::GetStyle() const {
-	return this->style;
-}
+DWORD IWindow::GetExtentedStyle() const { return this->extendedStyle; }
+DWORD IWindow::GetStyle() const { return this->style; }
 
-RECT IWindow::GetWindowRect() const {
-	return this->windowRect;
-}
+RECT IWindow::GetWindowRect() const { return this->windowRect; }
 
 bool IWindow::SetupWindow() {
 	this->hWindow = CreateWindowEx( this->extendedStyle,
@@ -197,9 +215,7 @@ PIXELFORMATDESCRIPTOR IWindow::CreateWindowPixelFormatDescription() {
 	{
 		sizeof( PIXELFORMATDESCRIPTOR ),
 		1,
-		PFD_DRAW_TO_WINDOW |
-		PFD_SUPPORT_OPENGL |
-		PFD_DOUBLEBUFFER,
+		PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,
 		PFD_TYPE_RGBA,
 		GetWindowBitsPerPixel(),
 		0, 0, 0, 0, 0, 0,
@@ -216,26 +232,12 @@ PIXELFORMATDESCRIPTOR IWindow::CreateWindowPixelFormatDescription() {
 	};
 }
 
-long IWindow::GetWindowWidth() const {
-	return windowWidth;
-}
-long IWindow::GetWindowHeight() const {
-	return windowHeight;
-}
+long IWindow::GetWindowWidth() const { return windowWidth; }
+long IWindow::GetWindowHeight() const {	return windowHeight; }
 
-void IWindow::SetWindowWidth( long width ) {
-	this->windowWidth = width;
-}
-void IWindow::SetWindowHeight( long height ) {
-	this->windowHeight = height;
-}
+void IWindow::SetWindowWidth( long width ) { this->windowWidth = width; }
+void IWindow::SetWindowHeight( long height ) { this->windowHeight = height; }
 
-HDC IWindow::getWindowDeviceContext() const {
-	return this->hDC;
-}
-HWND IWindow::getWindowHandle() const {
-	return this->hWindow;
-}
-HINSTANCE IWindow::getWindowInstance() const {
-	return this->hInstance;
-}
+HDC IWindow::getWindowDeviceContext() const { return this->hDC; }
+HWND IWindow::getWindowHandle() const { return this->hWindow; }
+HINSTANCE IWindow::getWindowInstance() const { return this->hInstance; }

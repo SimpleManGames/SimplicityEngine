@@ -10,6 +10,8 @@
 
 class IWindow
 {
+	friend class MainWindow;
+
 public:
 	IWindow();
 	virtual ~IWindow();
@@ -34,6 +36,7 @@ public:
 
 protected:
 	bool MakeWindow();
+	bool MakeGLWindow();
 	bool TerminateWindow();
 
 	const POINT GetCenterPosition() const;
@@ -53,6 +56,8 @@ private:
 	bool SetupWindow();
 	bool ErrorHandling();
 
+	struct GLFWwindow * winHandle; 
+
 	WNDCLASS CreateWindowClass();
 	RECT CreateWindowRect();
 	PIXELFORMATDESCRIPTOR CreateWindowPixelFormatDescription();
@@ -60,6 +65,7 @@ private:
 	HDC             hDC;
 	HWND            hWindow;
 	HINSTANCE       hInstance;
+	HGLRC			hglrc;
 
 	RECT			windowRect;
 

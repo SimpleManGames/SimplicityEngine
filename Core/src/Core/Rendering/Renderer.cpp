@@ -3,6 +3,8 @@
 #include "Core/System/Graphics.h"
 #include "Core/System/Manager/SystemManager.h"
 
+#include "GLEW\glew.h"
+
 #include "Diagnostics/Logger.h"
 
 #include "Defines/assert.h"
@@ -102,4 +104,11 @@ void Renderer::FillPolygon( const std::vector<Vector2D>& vecPoints ) {
 }
 void Renderer::FillPolygon( Vector2D* points, int size ) {
 
+}
+
+void Renderer::DrawModel( const Shader & shader, const Geometry & geo ) {
+	glUseProgram( shader.handle );
+	glBindVertexArray( geo.vao );
+
+	glDrawElements( GL_TRIANGLES, geo.size, GL_UNSIGNED_INT, 0 );
 }

@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Core\Game\Game.h" />
     <ClInclude Include="include\Main.h" />
+    <ClInclude Include="include\SceneGraph\Scene\MyScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Game\Game.cpp" />

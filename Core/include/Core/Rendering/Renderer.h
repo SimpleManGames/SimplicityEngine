@@ -29,6 +29,15 @@
 #include "Helpers/Math/Rect2D.h"
 #endif // !_RECT2D_H
 
+#ifndef _SHADER_H
+#include "Defines\shader.h"
+#endif // !_SHADER_H
+
+#ifndef _GEOMETRY_H
+#include "Defines\geometry.h"
+#endif // !_GEOMETRY_H
+
+
 #ifndef _COLOR_H
 #include "Defines/color.h"
 #endif // !_COLOR_H
@@ -92,6 +101,8 @@ public:
 	void FillPolygon( const std::vector<Vector2D>& vecPoints );
 	// Draw a filled polygon
 	void FillPolygon( Vector2D* points, int size );
+
+	void DrawModel( const Shader &shader, const Geometry &geo );
 
 private:
 	// Holds a pointer to the graphics class

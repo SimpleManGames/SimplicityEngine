@@ -48,6 +48,7 @@ int Engine::MainLoop() {
 		Singleton<Logger>::GetInstance().Log( _T( "Initialization of the engine failed." ), LOGTYPE_ERROR );
 		return INITIALIZATION_FAILED;
 	}
+	Singleton<Logger>::GetInstance().Log( _T( "Initialization of the engine was successful" ), LOGTYPE_INFO );
 
 	// Seed the random number generator
 	srand( GetTickCount() );

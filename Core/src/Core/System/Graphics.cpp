@@ -21,10 +21,7 @@ bool Graphics::Initialize() {
 	return true;
 }
 void Graphics::Update() {}
-void Graphics::Draw() {
-
-}
+void Graphics::Draw() {}
 bool Graphics::Shutdown() {
-
 	return true;
 }

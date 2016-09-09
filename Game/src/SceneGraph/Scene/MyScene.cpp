@@ -3,7 +3,9 @@
 #include "SceneGraph/Object/GameObjects/SceneObject.h"
 #include "SceneGraph/Object/Objects/Shapes/RectShape.h"
 #include "SceneGraph/Object/Objects/Shapes/CircleShape.h"
+#include "SceneGraph\Component\RenderComponent.h"
 #include "SceneGraph/Component/ShapeComponent.h"
+#include "Core\Rendering\crenderutils.h"
 
 MyScene::MyScene()
 	:Scene( _T( "MyScene" ) )
@@ -22,6 +24,10 @@ bool MyScene::Initialize() {
 	circle_shape->SetColor( Color( 0, 0, 1 ) );
 	this->circle->AddComponent( new ShapeComponent( circle_shape ) ); // Ownership of the " CircleShape " is transferred to the " ShapeComponent ".
 	AddGameObject( this->circle );
+
+	triangle = new SceneObject();
+	this->triangle->AddComponent( new RenderComponent( MakeGeometry( verts, 3, tris, 3 ), MakeShader( vertS, fragS ) ) );
+	AddGameObject( this->triangle );
 
 	return Scene::Initialize();
 }

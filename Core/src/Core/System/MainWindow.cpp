@@ -12,12 +12,15 @@
 
 #include "Helpers/Singleton.h"
 
+#include "GLEW\glew.h"
+#include "GLFW\glfw3.h"
+
 MainWindow::MainWindow()
 	:System( SystemType::WINDOW_SYSTEM ) {}
 MainWindow::~MainWindow() {}
 
 bool MainWindow::Initialize() {
-	if( !MakeWindow() ) {
+	if( !MakeGLWindow() ) {
 		Shutdown();
 		return FALSE;
 	}
@@ -25,7 +28,10 @@ bool MainWindow::Initialize() {
 	return TRUE;
 }
 void MainWindow::Update() {
-
+	glfwMakeContextCurrent( winHandle );
+	glfwPollEvents();
+	glfwSwapBuffers( winHandle );
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 bool MainWindow::Shutdown() {
 	ApplicationSettings settings = Singleton<WorldSettings>::GetInstance().GetApplicationSettings();
