@@ -20,9 +20,11 @@ c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\timer.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\scenemanager.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\scene.obj
+c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\rendercomponent.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\engine.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\abstractgame.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\game.obj
+c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\crenderutils.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\applicationsettings.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\gamesettings.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\phyxsettings.obj
@@ -38,8 +40,7 @@ c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\logger.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\manager.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\matrix2d.obj
-c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\rendercomponent.obj
-c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\crenderutils.obj
+c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\intermediate\input.obj
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\bin\core\debug\core.lib
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\\bin\core\debug\core.pdb
 c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\\bin\core\debug\core.lib

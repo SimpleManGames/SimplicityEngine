@@ -83,6 +83,7 @@
     <ClInclude Include="include\Defines\color.h" />
     <ClInclude Include="include\Defines\deletemacro.h" />
     <ClInclude Include="include\Defines\deletemacros.h" />
+    <ClInclude Include="include\Defines\framebuffer.h" />
     <ClInclude Include="include\Defines\fstream.h" />
     <ClInclude Include="include\Defines\geometry.h" />
     <ClInclude Include="include\Defines\iostream.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="include\Defines\shader.h" />
     <ClInclude Include="include\Defines\string.h" />
     <ClInclude Include="include\Defines\stringstream.h" />
+    <ClInclude Include="include\Defines\texture.h" />
     <ClInclude Include="include\Defines\Types\InputType.h" />
     <ClInclude Include="include\Defines\Types\LogType.h" />
     <ClInclude Include="include\Defines\Types\ResourceType.h" />
@@ -104,7 +106,6 @@
     <ClInclude Include="include\Helpers\Math\Vector2D.h" />
     <ClInclude Include="include\Helpers\ObjectCounter.h" />
     <ClInclude Include="include\Helpers\Singleton.h" />
-    <ClInclude Include="include\Helper\Manager.h" />
     <ClInclude Include="include\Interfaces\IDrawable.h" />
     <ClInclude Include="include\Interfaces\IFillableShape.h" />
     <ClInclude Include="include\Interfaces\IWindow.h" />

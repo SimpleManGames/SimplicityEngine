@@ -20,7 +20,6 @@ public:
 private:
 	Geometry geometry;
 	Shader shader;
-
 };
 
 #endif // !_RENDERCOMPONENT_H

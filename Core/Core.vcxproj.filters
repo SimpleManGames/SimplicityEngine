@@ -39,9 +39,6 @@
     <ClInclude Include="include\Diagnostics\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Helper\Manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Core\Game\AbstractGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -199,6 +196,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Defines\Types\InputType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\framebuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
