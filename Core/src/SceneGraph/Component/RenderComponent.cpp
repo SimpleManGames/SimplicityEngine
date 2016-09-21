@@ -5,9 +5,10 @@
 
 #include "Core\Rendering\Renderer.h"
 
-RenderComponent::RenderComponent( Geometry g, Shader s ) {
+RenderComponent::RenderComponent( Geometry g, Shader s, Framebuffer f ) {
 	geometry = g;
 	shader = s;
+	frame = f;
 }
 
 RenderComponent::~RenderComponent() {}
@@ -17,7 +18,7 @@ bool RenderComponent::Initialize() {
 }
 
 void RenderComponent::Draw() {
-	GetParent()->GetScene()->GetRenderer()->DrawModel(shader, geometry);
+	GetParent()->GetScene()->GetRenderer()->Draw(shader, geometry, frame);
 }
 
 void RenderComponent::Update() {}

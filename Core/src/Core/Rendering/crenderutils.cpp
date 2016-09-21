@@ -4,7 +4,7 @@
 #include "GLEW\glew.h"
 #include "GLFW\glfw3.h"
 #define TINYOBJLOADER_IMPLEMENTATION
-#include "OBJ/tiny_obj_loader.h"
+#include "OBJ\tiny_obj_loader.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "STB\stb_image.h"
 

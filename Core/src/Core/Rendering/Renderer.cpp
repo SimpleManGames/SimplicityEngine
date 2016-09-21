@@ -10,8 +10,9 @@
 
 #include "Diagnostics/Logger.h"
 
-#include "Defines/assert.h"
-#include "Defines/deletemacros.h"
+#include "Defines\assert.h"
+#include "Defines\deletemacros.h"
+#include "Defines\systemdefines.h"
 
 #include "Helpers/Singleton.h"
 
@@ -19,7 +20,7 @@ Renderer::Renderer() {}
 Renderer::~Renderer() {}
 
 bool Renderer::Initialize() {
-	this->graphics = dynamic_cast< Graphics* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::GRAPHICS_SYSTEM ) );
+	this->graphics = GetSystem(Graphics, SystemType::GRAPHICS_SYSTEM);
 	assert( this->graphics != nullptr );
 
 	return true;

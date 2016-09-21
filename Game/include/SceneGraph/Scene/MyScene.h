@@ -2,9 +2,17 @@
 #define _MYSCENE_H
 
 #include "SceneGraph/Scene/Scene.h"
-#include "Core\System\Input.h"
 #include "Defines\vertex.h"
 #include "Defines\geometry.h"
+
+#include "SceneGraph/Object/GameObjects/SceneObject.h"
+#include "SceneGraph\Component\RenderComponent.h"
+
+#include "Core\Rendering\crenderutils.h"
+
+#include "Core\System\Manager\SystemManager.h"
+
+#include "Defines\systemdefines.h"
 
 #include "Camera.h"
 

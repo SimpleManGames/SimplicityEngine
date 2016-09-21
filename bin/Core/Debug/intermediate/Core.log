@@ -1,1 +1,12 @@
-﻿  Core.vcxproj -> C:\Users\Riley\documents\visual studio 2015\Projects\SimplicityEngine\\bin\Core\Debug\Core.lib
+﻿  SceneManager.cpp
+  RectShape.cpp
+  PolygonShape.cpp
+  LineShape.cpp
+  CircleShape.cpp
+  ShapeComponent.cpp
+  RenderComponent.cpp
+  Logic.cpp
+  Renderer.cpp
+  Engine.cpp
+  Generating Code...
+  Core.vcxproj -> C:\Users\riley.smith\Desktop\SimplicityEngine\\bin\Core\Debug\Core.lib

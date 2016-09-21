@@ -6,15 +6,16 @@
 
 //System
 #include "Core/System/System.h"
-
-#include "Core\System\Logic.h"
-#include "Core\System\MainWindow.h"
-#include "Core\System\Graphics.h"
-#include "Core\System\MainTimer.h"
-#include "Core\System\Input.h"
+#include "Defines\systemdefines.h"
 
 #include "Core/System/Manager/SystemManager.h"
 #include "Defines/Types/SystemType.h"
+
+#include "Core\System\MainWindow.h"
+#include "Core\System\Graphics.h"
+#include "Core\System\Input.h"
+#include "Core\System\Logic.h"
+#include "Core\System\MainTimer.h"
 
 //Interface
 #include "Interfaces/IDrawable.h"
@@ -80,27 +81,27 @@ int Engine::Initialize() {
 	}
 	Singleton<Logger>::GetInstance().Log( _T( "Managers successfully created" ), LOGTYPE_INFO );
 
-	MainWindow* window = dynamic_cast< MainWindow* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::WINDOW_SYSTEM ) );
+	MainWindow* window = GetSystem(MainWindow, SystemType::WINDOW_SYSTEM);
 	if( window == nullptr ) {
 		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Window System" ), LOGTYPE_ERROR );
 		return FALSE;
 	}
-	MainTimer* timer = dynamic_cast< MainTimer* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::TIMER_SYSTEM ) );
+	MainTimer* timer = GetSystem(MainTimer, SystemType::TIMER_SYSTEM);
 	if( timer == nullptr ) {
 		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Timer System" ), LOGTYPE_ERROR );
 		return FALSE;
 	}
-	Graphics* graphics = dynamic_cast< Graphics* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::GRAPHICS_SYSTEM ) );
+	Graphics* graphics = GetSystem(Graphics, SystemType::GRAPHICS_SYSTEM);
 	if( graphics == nullptr ) {
 		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Graphics System" ), LOGTYPE_ERROR );
 		return FALSE;
 	}
-	Input* input = dynamic_cast< Input* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::INPUT_SYSTEM ) );
+	Input* input = GetSystem(Input, SystemType::INPUT_SYSTEM);
 	if( input == nullptr ) {
 		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Input System" ), LOGTYPE_ERROR );
 		return FALSE;
 	}
-	Logic* logic = dynamic_cast< Logic* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::LOGIC_SYSTEM ) );
+	Logic* logic = GetSystem(Logic, SystemType::LOGIC_SYSTEM);
 	if( logic == nullptr ) {
 		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Logic System" ), LOGTYPE_ERROR );
 		return FALSE;

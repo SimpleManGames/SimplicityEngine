@@ -1,0 +1,33 @@
+#version 450
+
+in vec2 frag_texcoord;
+
+out vec4 outColor;.
+
+uniform sampler2D texMap;
+
+vec4 blue = vec4(0f, 0f, 255f / 255f, 1f);
+vec4 tan = vec4(232f / 255f, 226f / 255f, 131f / 255f, 1f);
+vec4 green = vec4(88f / 255f, 232f / 255f, 32f / 255f, 1f);
+vec4 grey = vec4(71f / 255f, 66f / 255f, 70f / 255f, 1f);
+
+void main() { 
+	outColor = texture(texMap, frag_texcoord).rrrr;
+	if(texture(texMap, frag_texcoord).r > .1f && texture(texMap, frag_texcoord).r < .4f) 
+		outColor = blue;
+
+	if(texture(texMap, frag_texcoord).r > .4f && texture(texMap, frag_texcoord).r < .45f) 
+		outColor = tan;
+
+	if(texture(texMap, frag_texcoord).r > .45f && texture(texMap, frag_texcoord).r < .65f) 
+		outColor = green;
+
+	if(texture(texMap, frag_texcoord).r > .65f && texture(texMap, frag_texcoord).r < .95f)
+		outColor = grey;
+	
+	if(texture(texMap, frag_texcoord).r > .95f)
+		outColor = vec4(1,1,1,1);
+
+
+	outColor.a = 1;
+}

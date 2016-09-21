@@ -91,6 +91,7 @@
     <ClInclude Include="include\Defines\shader.h" />
     <ClInclude Include="include\Defines\string.h" />
     <ClInclude Include="include\Defines\stringstream.h" />
+    <ClInclude Include="include\Defines\systemdefines.h" />
     <ClInclude Include="include\Defines\texture.h" />
     <ClInclude Include="include\Defines\Types\InputType.h" />
     <ClInclude Include="include\Defines\Types\LogType.h" />

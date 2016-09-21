@@ -138,7 +138,7 @@ public:
 
 		Draw_Internal::EndDraw( s, g, r );
 	}
-
+	
 	inline void Draw( const Shader &s, const Geometry &g, const Framebuffer &r ) {
 		Draw_Internal::BeginDraw( s, g, r );
 		Draw_Internal::EndDraw( s, g, r );

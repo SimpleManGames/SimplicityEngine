@@ -1,0 +1,19 @@
+#version 450
+
+in vec4 vColor;
+in vec4 vPosition;
+out vec4 outColor;
+
+uniform int i;
+
+//float ii;
+
+void main() { 
+	//if(i == 1) ii += .01f;
+	//else if( i == 0) -= .01f;
+
+	outColor = vColor;
+	outColor.r = cos(i);
+	outColor.b = tan(i);
+	outColor.g = sin(i);
+}
