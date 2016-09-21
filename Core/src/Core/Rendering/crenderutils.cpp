@@ -1,13 +1,19 @@
+#include "Core\Rendering\crenderutils.h"
+
 #define GLEW_STATIC
 #include "GLEW\glew.h"
 #include "GLFW\glfw3.h"
+#define TINYOBJLOADER_IMPLEMENTATION
+#include "OBJ/tiny_obj_loader.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "STB\stb_image.h"
+
 #include <cstdio>
-#include "Core\Rendering\crenderutils.h"
+
 #include "Helpers\Singleton.h"
 #include "Diagnostics\Logger.h"
-#define TINYOBJLOADER_IMPLEMENTATION
-#include "../include/OBJ/tiny_obj_loader.h"
 #include "Helpers\FileReader.h"
+
 // Geometry Functions
 // ------------------
 
@@ -50,7 +56,7 @@ Geometry LoadGeometry( const char * path ) {
 	std::string err;
 
 	bool ret = tinyobj::LoadObj( &attrib, &shapes, &materials, &err, path );
-	
+
 	if( !ret ) {
 		Singleton<Logger>::GetInstance().Log( _T( "tinyobj::LoadObj returned false\n Check the file format" ), LOGTYPE_ERROR );
 		return{ 0, 0, 0, 0 };
@@ -58,7 +64,7 @@ Geometry LoadGeometry( const char * path ) {
 
 	Geometry retVal;
 
-	for( int s = 0; s < shapes.size(); s++ ) {
+	for( size_t s = 0; s < shapes.size(); s++ ) {
 		int vSize = shapes[ s ].mesh.indices.size();
 
 		Vertex * verts = new Vertex[ vSize ];
@@ -116,32 +122,112 @@ Shader MakeShader( const char * vert, const char * frag ) {
 
 	return retVal;
 }
-Shader LoadShader( const std::tstring & vPath, const std::tstring & fPath ) {
-	char * vSource = GetStringFromFile( vPath );
+Shader LoadShader( const char * vPath, const char * fPath ) {
+	char * v = GetStringFromFile( vPath );
+	char * f = GetStringFromFile( fPath );
+
+	if( v == nullptr ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Failed to load vertex shader" ), LOGTYPE_ERROR );
+		return Shader();
+	}
+
+	if( f == nullptr ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Failed to load fragment shader" ), LOGTYPE_ERROR );
+		return Shader();
+	}
+
+	return MakeShader( v, f );
 }
+
 void FreeShader( Shader & s ) {
 	glDeleteProgram( s.handle );
 	s = { 0 };
 }
 
 Texture MakeTexture( unsigned width, unsigned height, unsigned format, const unsigned char * pixels ) {
-	return Texture();
+	Texture retVal = { 0, width, height, format };
+
+	glGenTextures( 1, &retVal.handle );
+	glBindTexture( GL_TEXTURE_2D, retVal.handle );
+	glTexImage2D( GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, pixels );
+
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+
+	glBindTexture( GL_TEXTURE_2D, 0 );
+
+	return retVal;
 }
 
-Texture MakeTexture( unsigned width, unsigned height, unsigned format, const float * pixels ) {
-	return Texture();
+Texture LoadTexture( const char * path ) {
+	Texture retVal = { 0, 0, 0, 0 };
+
+	stbi_set_flip_vertically_on_load( true );
+
+	int w, h, f;
+	unsigned char * p;
+
+	if( !( p = stbi_load( path, &w, &h, &f, STBI_default ) ) ) {
+		Singleton<Logger>::GetInstance().Log( _T( "stbi_load failed to load the texture" ), LOGTYPE_ERROR );
+		return retVal;
+	}
+
+	switch( f ) {
+		case STBI_grey: f = GL_RED; break;
+		case STBI_grey_alpha: f = GL_RG; break;
+		case STBI_rgb: f = GL_RGB; break;
+		case STBI_rgb_alpha: f = GL_RGBA; break;
+	}
+	retVal = MakeTexture( w, h, f, p );
+	stbi_image_free( p );
+	return retVal;
 }
 
-Texture LoadTexture( const std::tstring & path ) {
-	return Texture();
+void FreeTexture( Texture & t ) {
+	glDeleteTextures( 1, &t.handle );
+	t = { 0,0,0,0 };
 }
-
-void FreeTexture( Texture & t ) {}
 
 Framebuffer MakeFramebuffer( unsigned width, unsigned height, unsigned nColors ) {
-	return Framebuffer();
+	Framebuffer retVal = { 0, width, height, nColors };
+
+	glGenFramebuffers( 1, &retVal.handle );
+	glBindFramebuffer( GL_FRAMEBUFFER, retVal.handle );
+
+	retVal.depth = MakeTexture( width, height, GL_DEPTH_COMPONENT, 0 );
+	glFramebufferTexture( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, retVal.depth.handle, 0 );
+
+	const GLenum attachments[ 8 ] = {
+		GL_COLOR_ATTACHMENT0,
+		GL_COLOR_ATTACHMENT1,
+		GL_COLOR_ATTACHMENT2,
+		GL_COLOR_ATTACHMENT3,
+		GL_COLOR_ATTACHMENT4,
+		GL_COLOR_ATTACHMENT5,
+		GL_COLOR_ATTACHMENT6,
+		GL_COLOR_ATTACHMENT7
+	};
+
+	for( unsigned int i = 0; i < nColors; ++i ) {
+		retVal.colors[ i ] = MakeTexture( width, height, GL_RGBA, 0 );
+		glFramebufferTexture( GL_FRAMEBUFFER, attachments[ i ], retVal.colors[ i ].handle, 0 );
+	}
+
+	glDrawBuffers( nColors, attachments );
+	glBindFramebuffer( GL_FRAMEBUFFER, 0 );
+
+	return retVal;
 }
 
-void FreeFramebuffer( Framebuffer & b ) {}
+void FreeFramebuffer( Framebuffer & b ) {
+	for( unsigned int i = 0; i < b.nColors; ++i ) {
+		FreeTexture( b.colors[ i ] );
+	}
+	glDeleteFramebuffers( 1, &b.handle );
+	b = { 0,0,0,0 };
+}
 
-void ClearFramebuffer( const Framebuffer & b ) {}
+void ClearFramebuffer( const Framebuffer & b ) {
+	glBindFramebuffer( GL_FRAMEBUFFER, b.handle );
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+}

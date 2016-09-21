@@ -21,7 +21,7 @@ public:
 	virtual bool Shutdown();
 
 private:
-	MainWindow* mainWindow;
+	MainWindow * mainWindow;
 };
 
 #endif // !_GRAPHICS_H

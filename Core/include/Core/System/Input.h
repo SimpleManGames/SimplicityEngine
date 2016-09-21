@@ -15,7 +15,7 @@ public:
 	virtual void Update();
 	virtual bool Shutdown();
 
-	KeyState GetKeyState( int key ) { return keys[ key ]; }
+	KeyState GetKeyState( int key ) const { return keys[ key ]; }
 
 	float getMouseHorz() const { return mouseHor; }
 	float getMouseVert() const { return mouseVer; }

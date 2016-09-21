@@ -4,6 +4,9 @@
 #include "SceneGraph/Scene/Scene.h"
 #include "Core\System\Input.h"
 #include "Defines\vertex.h"
+#include "Defines\geometry.h"
+
+#include "Camera.h"
 
 class SceneObject;
 
@@ -17,20 +20,15 @@ public:
 	virtual bool Shutdown();
 
 private:
+	Camera * camera;
 	Input * input;
 
-	SceneObject* rectangle;
-	SceneObject* circle;
-	SceneObject* triangle;
+	SceneObject * cubeObject;
 
-	Vertex verts[ 3 ] = { { {    0,  .5f, 0, 1 } },
-						  { {  .5f, -.5f, 0, 1 } },
-						  { { -.5f, -.5f, 0, 1 } } }; 
-
-	unsigned tris[ 3 ] = { 2, 1, 0 };
+	Geometry cube;
 
 	const char * vertS = "#version 150\n" "in vec4 position;" "void main() { gl_Position = position; }";
-	const char * fragS = "#version 150\n" "out vec4 outColor;" "void main() { outColor = vec4(1.0, 0.0, 0.0, 1.0); }";
+	const char * fragS = "#version 150\n" "out vec4 outColor;" "void main() { outColor = gl_Position; }";
 };
 
 #endif

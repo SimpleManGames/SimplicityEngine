@@ -49,8 +49,8 @@ void Input::Update() {
 	glfwGetCursorPos( winHandle, &mouseXCur, &mouseYCur );
 	//glfwSetCursorPos( winHandle, w / 2, h / 2 );
 
-	mouseHor = mouseXCur - mouseXPrev;
-	mouseVer = mouseYCur - mouseYPrev;
+	mouseHor = (float)(mouseXCur - mouseXPrev);
+	mouseVer = (float)(mouseYCur - mouseYPrev);
 }
 
 bool Input::Shutdown() {

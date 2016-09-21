@@ -18,7 +18,6 @@ Shader LoadShader( const std::tstring & vPath, const std::tstring & fPath );
 void FreeShader( Shader & s );
 
 Texture MakeTexture( unsigned width, unsigned height, unsigned format, const unsigned char * pixels );
-Texture MakeTexture( unsigned width, unsigned height, unsigned format, const float * pixels );
 Texture LoadTexture( const std::tstring & path );
 void FreeTexture( Texture & t );
 

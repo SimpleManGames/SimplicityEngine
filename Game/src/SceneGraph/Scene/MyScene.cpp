@@ -9,27 +9,35 @@
 #include "Core\Rendering\crenderutils.h"
 
 #include "Core\System\Manager\SystemManager.h"
+#include "Core\System\MainTimer.h"
+
+#include "Camera.h"
 
 MyScene::MyScene()
-	:Scene( _T( "MyScene" ) )
-	, rectangle( nullptr )
-	, circle( nullptr ) {}
+	:Scene( _T( "MyScene" ) ) {}
 MyScene::~MyScene() {}
 
 bool MyScene::Initialize() {
+	cube = LoadGeometry( "../res/model/cube.obj" );
+
+	camera = new Camera();
+	camera->JumpTo( glm::vec3( -5, -5, -5 ) );
+	camera->LookAt( glm::vec3( 0, 0, 0 ) );
+
 	input = dynamic_cast< Input* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::INPUT_SYSTEM ) );
-	triangle = new SceneObject();
-	this->triangle->AddComponent( new RenderComponent( MakeGeometry( verts, 3, tris, 3 ), MakeShader( vertS, fragS ) ) );
-	AddGameObject( this->triangle );
+	cubeObject = new SceneObject( _T( "Triangle" ) );
+	this->cubeObject->AddComponent( new RenderComponent( cube, MakeShader( vertS, fragS ) ) );
+	AddGameObject( this->cubeObject );
 
 	return Scene::Initialize();
 }
 void MyScene::Update() {
-	if( input->GetKeyState( 'A' ) == KeyState::DOWN )
-		Singleton<Logger>::GetInstance().Log( _T( "Input Update" ), LOGTYPE_INFO );
+	camera->Update( dynamic_cast< Input* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::INPUT_SYSTEM ) ), dynamic_cast< MainTimer* >( Singleton<SystemManager>::GetInstance().getSystem( SystemType::TIMER_SYSTEM ) ) );
 
 	Scene::Update();
 }
 bool MyScene::Shutdown() {
+	SafeDelete( camera );
+	SafeDelete( cubeObject );
 	return Scene::Shutdown();
 }

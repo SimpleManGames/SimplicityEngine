@@ -7,6 +7,7 @@ struct Framebuffer {
 	unsigned handle;
 	unsigned width, height;
 	unsigned nColors;
+	Texture depth;
 	Texture colors[ 8 ];
 };
 
