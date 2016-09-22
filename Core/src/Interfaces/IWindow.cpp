@@ -72,6 +72,11 @@ bool IWindow::MakeWindow() {
 
 	if( !( wglMakeCurrent( hDC, hglrc ) ) ) {
 		Singleton<Logger>::GetInstance().Log( _T( "Failed to make OpenGL RC current" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	if( !( winHandle = glfwCreateWindow( GetWindowWidth(), GetWindowHeight(), "Test", nullptr, nullptr ) ) ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Failed to make GLFW Window" ), LOGTYPE_ERROR );
+		return FALSE;
 	}
 
 	glewExperimental = true;
@@ -86,7 +91,10 @@ bool IWindow::MakeWindow() {
 }
 bool IWindow::MakeGLWindow() {
 	glfwInit();
-	winHandle = glfwCreateWindow( GetWindowWidth(), GetWindowHeight(), "Test", nullptr, nullptr );
+	std::wstring tmp( L"Hello" );
+	char * title = new char[ 255 ];
+	sprintf( title, "%ls", this->GetWindowTitle().c_str() );
+	winHandle = glfwCreateWindow( GetWindowWidth(), GetWindowHeight(), title, nullptr, nullptr );
 	glfwMakeContextCurrent( winHandle );
 	glewExperimental = true;
 	glewInit();

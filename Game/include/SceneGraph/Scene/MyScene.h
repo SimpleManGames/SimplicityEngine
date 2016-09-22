@@ -37,6 +37,8 @@ private:
 
 	const char * vertS = "#version 150\n" "in vec4 position;" "void main() { gl_Position = position; }";
 	const char * fragS = "#version 150\n" "out vec4 outColor;" "void main() { outColor = gl_Position; }";
+
+	Framebuffer frame;
 };
 
 #endif
