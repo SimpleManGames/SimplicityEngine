@@ -1,6 +1,12 @@
 #ifndef _FILEREADER_H
 #define _FILEREADER_H
 
+#include <string>
+#include <fstream>
+
+#include "Helpers\Singleton.h"
+#include "Diagnostics\Logger.h"
+
 char * GetStringFromFile( const char * path ) {
 	unsigned int array_size = 5012;
 	char * array = new char[ array_size ];

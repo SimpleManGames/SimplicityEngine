@@ -91,7 +91,6 @@ bool IWindow::MakeWindow() {
 }
 bool IWindow::MakeGLWindow() {
 	glfwInit();
-	std::wstring tmp( L"Hello" );
 	char * title = new char[ 255 ];
 	sprintf( title, "%ls", this->GetWindowTitle().c_str() );
 	winHandle = glfwCreateWindow( GetWindowWidth(), GetWindowHeight(), title, nullptr, nullptr );

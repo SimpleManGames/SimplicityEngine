@@ -18,7 +18,7 @@ void Camera::Update( const Input * i, const MainTimer * t ) {
 	glm::vec3 moveDir = glm::vec3( 0, 0, 0 );
 
 	if( i->GetKeyState( 'W' ) == KeyState::DOWN ) moveDir += direction;
-	if( i->GetKeyState( 'W' ) == KeyState::DOWN ) moveDir -= direction;
+	if( i->GetKeyState( 'S' ) == KeyState::DOWN ) moveDir -= direction;
 
 	if( i->GetKeyState( 'A' ) == KeyState::DOWN ) moveDir += right;
 	if( i->GetKeyState( 'D' ) == KeyState::DOWN ) moveDir -= right;

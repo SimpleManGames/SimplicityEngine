@@ -38,6 +38,9 @@
 #ifndef _FRAMEBUFFER_H
 #include "Defines\framebuffer.h"
 #endif // !_FRAMEBUFFER_H
+#ifndef _TEXTURE_H
+#include "Defines\texture.h"
+#endif // !_FRAMEBUFFER_H
 
 #include "GLM\ext.hpp"
 
@@ -130,6 +133,7 @@ public:
 	void FillPolygon( Vector2D* points, int size );
 
 	void DrawModel( const Shader &shader, const Geometry &geo );
+
 	template<typename ...U>
 	void Draw( const Shader &s, const Geometry &g, const Framebuffer &r, U ... uniforms ) {
 		Draw_Internal::BeginDraw( s, g, r );

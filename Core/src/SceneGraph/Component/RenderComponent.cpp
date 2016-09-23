@@ -1,17 +1,11 @@
 #include "SceneGraph\Component\RenderComponent.h"
 
-#include "SceneGraph\Object\GameObjects\GameObject.h"
-#include "SceneGraph\Scene\Scene.h"
-
-#include "Core\Rendering\Renderer.h"
-
 RenderComponent::RenderComponent( Geometry g, Shader s, Framebuffer f ) {
 	geometry = g;
 	shader = s;
 	frame = f;
 }
-
-RenderComponent::~RenderComponent() {}
+RenderComponent::~RenderComponent() {  }
 
 bool RenderComponent::Initialize() {
 	return true;

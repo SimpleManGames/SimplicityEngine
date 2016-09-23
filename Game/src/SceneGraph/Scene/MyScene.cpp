@@ -5,30 +5,29 @@ MyScene::MyScene()
 MyScene::~MyScene() {}
 
 bool MyScene::Initialize() {
-	cube = LoadGeometry( "../res/models/cube.obj" );
-
 	camera = new Camera();
 	camera->JumpTo( glm::vec3( -5, -5, -5 ) );
 	camera->LookAt( glm::vec3( 0, 0, 0 ) );
-
-	frame = MakeFramebuffer( 1280, 720, 3 );
+	view = camera->GetView();
+	frame = Framebuffer_Internal::Make( 1280, 720, 1 );
 	Framebuffer screen = { 0, 1280, 720, 1 };
 
-	input = GetSystem( Input, SystemType::INPUT_SYSTEM );
+	Singleton<ResourceManager>::GetInstance().Add<Geometry>( "Cube", "../res/models/cube.obj" );
 	cubeObject = new SceneObject( _T( "Triangle" ) );
-	this->cubeObject->AddComponent( new RenderComponent( cube, MakeShader( vertS, fragS ), screen ) );
+	Geometry cube = Singleton<ResourceManager>::GetInstance().Get<Geometry>( "Cube" );
+	this->cubeObject->AddComponent( new RenderComponent( cube, Shader_Internal::Make( vertS, fragS ), screen ) );
 	AddGameObject( this->cubeObject );
 
 	return Scene::Initialize();
 }
 void MyScene::Update() {
-	camera->Update( input, GetSystem( MainTimer, SystemType::TIMER_SYSTEM ) );
+	view = camera->GetView();
+	proj = camera->GetProj();
 
+	camera->Update( GetSystem(Input, SystemType::INPUT_SYSTEM), 
+					GetSystem(MainTimer, SystemType::TIMER_SYSTEM ) );
 	Scene::Update();
 }
 bool MyScene::Shutdown() {
-	SafeDelete( camera );
-	SafeDelete( cubeObject );
-
 	return Scene::Shutdown();
 }

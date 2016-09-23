@@ -54,7 +54,6 @@ protected:
 	void SetWindowWidth(long width);
 	void SetWindowHeight(long height);
 
-
 private:
 	bool SetupWindow();
 	bool ErrorHandling();

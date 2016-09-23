@@ -1,6 +1,7 @@
 #include "Core\System\Input.h"
 
 #include "Helpers\Singleton.h"
+#include "Diagnostics\Logger.h"
 #include "Core\System\Manager\SystemManager.h"
 
 #include "GLFW\glfw3.h"
@@ -17,7 +18,8 @@ bool Input::Initialize() {
 	MainWindow* win = dynamic_cast< MainWindow* > ( Singleton<SystemManager>::GetInstance().getSystem( SystemType::WINDOW_SYSTEM ) );
 	if( !( winHandle = win->GetWindowHandle() ) )
 		return false;
-	glfwSetInputMode( winHandle, GLFW_CURSOR, GLFW_CURSOR_DISABLED );
+	Singleton<Logger>::GetInstance().Log( _T( "See if there is a way to get rid of GLFW Input" ), LOGTYPE_TODO );
+	glfwSetInputMode( winHandle, GLFW_CURSOR, GLFW_CURSOR_NORMAL );
 
 	mouseXCur = mouseXPrev = mouseYCur = mouseYPrev = mouseHor = mouseVer = 0;
 

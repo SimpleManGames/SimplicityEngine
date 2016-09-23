@@ -5,11 +5,12 @@
 #endif
 
 //System
-#include "Core/System/System.h"
+#include "Core\System\System.h"
 #include "Defines\systemdefines.h"
 
-#include "Core/System/Manager/SystemManager.h"
-#include "Defines/Types/SystemType.h"
+#include "Core\System\Manager\SystemManager.h"
+#include "Core\System\Manager\ResourceManager.h"
+#include "Defines\Types\SystemType.h"
 
 #include "Core\System\MainWindow.h"
 #include "Core\System\Graphics.h"
@@ -18,22 +19,22 @@
 #include "Core\System\MainTimer.h"
 
 //Interface
-#include "Interfaces/IDrawable.h"
+#include "Interfaces\IDrawable.h"
 
 //Helpers
-#include "Helpers/Singleton.h"
+#include "Helpers\Singleton.h"
 
 //Diagnostics
-#include "Diagnostics/Logger.h"
+#include "Diagnostics\Logger.h"
 
 //Settings
-#include "Core/Settings/WorldSettings.h"
+#include "Core\Settings\WorldSettings.h"
 
 //SceneGraph
-#include "SceneGraph/Scene/Manager/SceneManager.h"
+#include "SceneGraph\Scene\Manager\SceneManager.h"
 
 //Game
-#include "Core/Game/AbstractGame.h"
+#include "Core\Game\AbstractGame.h"
 
 namespace {
 	const int INITIALIZATION_FAILED = 0x0001;
@@ -79,58 +80,11 @@ int Engine::Initialize() {
 		Singleton<Logger>::GetInstance().Log( _T( "Failed to create managers" ), LOGTYPE_ERROR );
 		return FALSE;
 	}
-	Singleton<Logger>::GetInstance().Log( _T( "Managers successfully created" ), LOGTYPE_INFO );
 
-	MainWindow* window = GetSystem(MainWindow, SystemType::WINDOW_SYSTEM);
-	if( window == nullptr ) {
-		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Window System" ), LOGTYPE_ERROR );
+	if( !SetUpSystems() ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Failed to setup Systems" ), LOGTYPE_ERROR );
 		return FALSE;
 	}
-	MainTimer* timer = GetSystem(MainTimer, SystemType::TIMER_SYSTEM);
-	if( timer == nullptr ) {
-		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Timer System" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-	Graphics* graphics = GetSystem(Graphics, SystemType::GRAPHICS_SYSTEM);
-	if( graphics == nullptr ) {
-		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Graphics System" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-	Input* input = GetSystem(Input, SystemType::INPUT_SYSTEM);
-	if( input == nullptr ) {
-		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Input System" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-	Logic* logic = GetSystem(Logic, SystemType::LOGIC_SYSTEM);
-	if( logic == nullptr ) {
-		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Logic System" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-	Singleton<Logger>::GetInstance().Log( _T( "All system pointers were successful" ), LOGTYPE_INFO );
-
-	if( !window->Initialize() ) {
-		Singleton<Logger>::GetInstance().Log( _T( "Window initialization failed" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-	if( !timer->Initialize() ) {
-		Singleton<Logger>::GetInstance().Log( _T( "Timer initialization failed" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-	if( !graphics->Initialize() ) {
-		Singleton<Logger>::GetInstance().Log( _T( "Graphic initialization failed" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-	if( !input->Initialize() ) {
-		Singleton<Logger>::GetInstance().Log( _T( "Input initialization failed" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-
-	logic->SetGame( this->game );
-	if( !logic->Initialize() ) {
-		Singleton<Logger>::GetInstance().Log( _T( "Logic initialization failed" ), LOGTYPE_ERROR );
-		return FALSE;
-	}
-	Singleton<Logger>::GetInstance().Log( _T( "All system initializaton was successful" ), LOGTYPE_INFO );
 
 	return TRUE;
 }
@@ -160,23 +114,74 @@ bool Engine::CreateManagers() {
 	Singleton<WorldSettings>::CreateInstance();
 	Singleton<SystemManager>::CreateInstance();
 	Singleton<SceneManager>::CreateInstance();
+	Singleton<ResourceManager>::CreateInstance();
 
-	if( !Singleton<WorldSettings>::GetInstance().Initialize() )
-		return false;
-	if( !Singleton<SystemManager>::GetInstance().Initialize() )
-		return false;
+	if( !Singleton<WorldSettings>::GetInstance().Initialize() ) return FALSE;
+	if( !Singleton<SystemManager>::GetInstance().Initialize() ) return FALSE;
+	if( !Singleton<ResourceManager>::GetInstance().Initialize() ) return FALSE;
 
-	return true;
+	return TRUE;
 }
 bool Engine::DestroyManagers() {
 	if( !Singleton<SystemManager>::GetInstance().Shutdown() )
-		return false;
+		return FALSE;
 	if( !Singleton<WorldSettings>::GetInstance().Shutdown() )
-		return false;
+		return FALSE;
 
 	Singleton<SceneManager>::DestroyInstance();
 	Singleton<SystemManager>::DestroyInstance();
 	Singleton<WorldSettings>::DestroyInstance();
 
-	return true;
+	return TRUE;
+}
+
+bool Engine::SetUpSystems() {
+	MainWindow* window = GetSystem( MainWindow, SystemType::WINDOW_SYSTEM );
+	if( window == nullptr ) {
+		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Window System" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	MainTimer* timer = GetSystem( MainTimer, SystemType::TIMER_SYSTEM );
+	if( timer == nullptr ) {
+		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Timer System" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	Graphics* graphics = GetSystem( Graphics, SystemType::GRAPHICS_SYSTEM );
+	if( graphics == nullptr ) {
+		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Graphics System" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	Input* input = GetSystem( Input, SystemType::INPUT_SYSTEM );
+	if( input == nullptr ) {
+		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Input System" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	Logic* logic = GetSystem( Logic, SystemType::LOGIC_SYSTEM );
+	if( logic == nullptr ) {
+		Singleton<Logger>::GetInstance().Log( _T( "System Manager failed to get the Logic System" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	if( !window->Initialize() ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Window initialization failed" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	if( !timer->Initialize() ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Timer initialization failed" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	if( !graphics->Initialize() ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Graphic initialization failed" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	if( !input->Initialize() ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Input initialization failed" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+	logic->SetGame( this->game );
+	if( !logic->Initialize() ) {
+		Singleton<Logger>::GetInstance().Log( _T( "Logic initialization failed" ), LOGTYPE_ERROR );
+		return FALSE;
+	}
+
+	return TRUE;
 }

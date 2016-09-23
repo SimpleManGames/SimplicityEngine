@@ -177,9 +177,6 @@
     <ClInclude Include="include\SceneGraph\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Core\Rendering\crenderutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Defines\vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -208,6 +205,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Defines\systemdefines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\System\Manager\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -326,13 +329,28 @@
     <ClCompile Include="src\Core\Rendering\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Rendering\crenderutils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\SceneGraph\Component\RenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\System\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Helpers\Resource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\System\Manager\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defines\texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defines\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defines\geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defines\framebuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

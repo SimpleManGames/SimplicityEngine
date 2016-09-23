@@ -19,6 +19,7 @@ private:
 
 	bool CreateManagers();
 	bool DestroyManagers();
+	bool SetUpSystems();
 
 	AbstractGame* game;
 };

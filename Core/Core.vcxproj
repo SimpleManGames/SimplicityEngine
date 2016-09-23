@@ -19,12 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Defines\framebuffer.cpp" />
+    <ClCompile Include="src\Defines\geometry.cpp" />
+    <ClCompile Include="src\Defines\shader.cpp" />
+    <ClCompile Include="src\Defines\texture.cpp" />
+    <ClCompile Include="src\Core\System\Manager\ResourceManager.cpp" />
     <ClCompile Include="src\Core\System\Input.cpp" />
+    <ClCompile Include="src\Helpers\Resource.cpp" />
     <ClCompile Include="src\SceneGraph\Component\RenderComponent.cpp" />
     <ClCompile Include="src\Core\Engine.cpp" />
     <ClCompile Include="src\Core\Game\AbstractGame.cpp" />
     <ClCompile Include="src\Core\Game\Game.cpp" />
-    <ClCompile Include="src\Core\Rendering\crenderutils.cpp" />
     <ClCompile Include="src\Core\Settings\ApplicationSettings.cpp" />
     <ClCompile Include="src\Core\Settings\GameSettings.cpp" />
     <ClCompile Include="src\Core\Settings\PhyxSettings.cpp" />
@@ -64,7 +69,6 @@
   <ItemGroup>
     <ClInclude Include="include\Core\Engine.h" />
     <ClInclude Include="include\Core\Game\AbstractGame.h" />
-    <ClInclude Include="include\Core\Rendering\crenderutils.h" />
     <ClInclude Include="include\Core\Rendering\Renderer.h" />
     <ClInclude Include="include\Core\Settings\ApplicationSettings.h" />
     <ClInclude Include="include\Core\Settings\GameSettings.h" />
@@ -76,6 +80,7 @@
     <ClInclude Include="include\Core\System\Logic.h" />
     <ClInclude Include="include\Core\System\MainTimer.h" />
     <ClInclude Include="include\Core\System\MainWindow.h" />
+    <ClInclude Include="include\Core\System\Manager\ResourceManager.h" />
     <ClInclude Include="include\Core\System\Manager\SystemFactory.h" />
     <ClInclude Include="include\Core\System\Manager\SystemManager.h" />
     <ClInclude Include="include\Core\System\System.h" />
@@ -107,6 +112,7 @@
     <ClInclude Include="include\Helpers\Math\Rect2D.h" />
     <ClInclude Include="include\Helpers\Math\Vector2D.h" />
     <ClInclude Include="include\Helpers\ObjectCounter.h" />
+    <ClInclude Include="include\Helpers\Resource.h" />
     <ClInclude Include="include\Helpers\Singleton.h" />
     <ClInclude Include="include\Interfaces\IDrawable.h" />
     <ClInclude Include="include\Interfaces\IFillableShape.h" />
@@ -198,7 +204,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -233,7 +239,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

@@ -1,18 +1,17 @@
 #ifndef _MYSCENE_H
 #define _MYSCENE_H
-
 #include "SceneGraph/Scene/Scene.h"
-#include "Defines\vertex.h"
-#include "Defines\geometry.h"
-
 #include "SceneGraph/Object/GameObjects/SceneObject.h"
 #include "SceneGraph\Component\RenderComponent.h"
 
-#include "Core\Rendering\crenderutils.h"
+#include "Core\System\Input.h"
+#include "Core\System\MainTimer.h"
 
-#include "Core\System\Manager\SystemManager.h"
-
+#include "Defines\geometry.h"
 #include "Defines\systemdefines.h"
+
+#include "Helpers\Singleton.h"
+#include "Core\System\Manager\ResourceManager.h"
 
 #include "Camera.h"
 
@@ -28,8 +27,8 @@ public:
 	virtual bool Shutdown();
 
 private:
+	glm::mat4 proj, view, model;
 	Camera * camera;
-	Input * input;
 
 	SceneObject * cubeObject;
 
