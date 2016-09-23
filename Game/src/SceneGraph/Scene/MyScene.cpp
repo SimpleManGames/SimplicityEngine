@@ -13,7 +13,7 @@ bool MyScene::Initialize() {
 	Framebuffer screen = { 0, 1280, 720, 1 };
 
 	Singleton<ResourceManager>::GetInstance().Add<Geometry>( "Cube", "../res/models/cube.obj" );
-	cubeObject = new SceneObject( _T( "Triangle" ) );
+	cubeObject = new SceneObject( _T( "Cube" ) );
 	Geometry cube = Singleton<ResourceManager>::GetInstance().Get<Geometry>( "Cube" );
 	this->cubeObject->AddComponent( new RenderComponent( cube, Shader_Internal::Make( vertS, fragS ), screen ) );
 	AddGameObject( this->cubeObject );

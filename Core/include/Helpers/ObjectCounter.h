@@ -4,12 +4,8 @@
 template <typename T>
 class ObjectCounter {
 public:
-	ObjectCounter() {
-		++objectAmount;
-	}
-	virtual ~ObjectCounter() {
-		--objectAmount;
-	}
+	ObjectCounter() { ++objectAmount; }
+	virtual ~ObjectCounter() { --objectAmount; }
 
 	static unsigned long GetAmount() { return objectAmount; }
 

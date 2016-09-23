@@ -2,12 +2,15 @@
 
 #define GLEW_STATIC
 #include "glew\glew.h"
+#define TINYOBJLOADER_IMPLEMENTATION
+#include "OBJ\tiny_obj_loader.h"
 
 #include "GLM\glm.hpp"
 #include "GLM\ext.hpp"
 
-#define TINYOBJLOADER_IMPLEMENTATION
-#include "OBJ\tiny_obj_loader.h"
+#include "Helpers\Singleton.h"
+#include "Diagnostics\Logger.h"
+
 
 Geometry Geometry_Internal::Make( const Vertex * verts, size_t vsize, const unsigned * tris, size_t tsize ) {
 	Geometry retVal;
@@ -50,7 +53,12 @@ Geometry Geometry_Internal::Load( const char * path ) {
 
 	bool ret = tinyobj::LoadObj( &attrib, &shapes, &materials, &err, path );
 
-	Geometry retVal;
+	Geometry retVal = { 0, 0, 0, 0 };
+
+	if( !ret ) {
+		Singleton<Logger>::GetInstance().Log( _T( "tinyobj Failed to load requested model from file. \n Check path or file format" ), LOGTYPE_WARNING );
+		return retVal;
+	}
 
 	for( unsigned int s = 0; s < shapes.size(); s++ ) {
 		int vSize = shapes[ s ].mesh.indices.size();
