@@ -21,6 +21,6 @@ bool RenderComponent::Shutdown() {
 	Geometry_Internal::Free( geometry );
 	Shader_Internal::Free( shader );
 	Framebuffer_Internal::Free( frame );
-
+	 
 	return true;
 }

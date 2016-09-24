@@ -79,14 +79,11 @@ public:
 	virtual bool Shutdown();
 
 	template<typename ...U>
-	void Draw( const Shader &s, const Geometry &g, const Framebuffer &r, U ... uniforms ) {
+	inline void Draw( const Shader &s, const Geometry &g, const Framebuffer &r, U ... uniforms ) {
 		Draw_Internal::BeginDraw( s, g, r );
-
 		Draw_Internal::Unpack( 0, 0, uniforms... );
-
 		Draw_Internal::EndDraw( s, g, r );
 	}
-	
 	inline void Draw( const Shader &s, const Geometry &g, const Framebuffer &r ) {
 		Draw_Internal::BeginDraw( s, g, r );
 		Draw_Internal::EndDraw( s, g, r );

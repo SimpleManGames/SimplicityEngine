@@ -14,8 +14,9 @@ bool MyScene::Initialize() {
 
 	Singleton<ResourceManager>::GetInstance().Add<Geometry>( "Cube", "../res/models/cube.obj" );
 	cubeObject = new SceneObject( _T( "Cube" ) );
+	int i = 0;
 	Geometry cube = Singleton<ResourceManager>::GetInstance().Get<Geometry>( "Cube" );
-	this->cubeObject->AddComponent( new RenderComponent( cube, Shader_Internal::Make( vertS, fragS ), screen ) );
+	this->cubeObject->AddComponent( new RenderComponent( cube, Shader_Internal::Make( vertS, fragS ), frame ) );
 	AddGameObject( this->cubeObject );
 
 	return Scene::Initialize();
@@ -24,8 +25,8 @@ void MyScene::Update() {
 	view = camera->GetView();
 	proj = camera->GetProj();
 
-	camera->Update( GetSystem(Input, SystemType::INPUT_SYSTEM), 
-					GetSystem(MainTimer, SystemType::TIMER_SYSTEM ) );
+	camera->Update( GetSystem( Input, SystemType::INPUT_SYSTEM ),
+					GetSystem( MainTimer, SystemType::TIMER_SYSTEM ) );
 	Scene::Update();
 }
 bool MyScene::Shutdown() {

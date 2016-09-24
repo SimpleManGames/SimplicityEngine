@@ -1,2 +1,7 @@
-﻿  Game.vcxproj -> C:\Users\Riley\documents\visual studio 2015\Projects\SimplicityEngine\\bin\Game\Debug\Game.exe
-  Game.vcxproj -> C:\Users\Riley\documents\visual studio 2015\Projects\SimplicityEngine\\bin\Game\Debug\Game.pdb (Partial PDB)
+﻿  MyScene.cpp
+c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\include\scenegraph\component\rendercomponent.h(29): error C2079: 'RenderComponent::tuple' uses undefined class 'std::tuple<_Types...>'
+c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\include\scenegraph\component\rendercomponent.h(29): error C3376: 'RenderComponent::tuple': only static data member templates are allowed
+  Game.cpp
+c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\include\scenegraph\component\rendercomponent.h(29): error C2079: 'RenderComponent::tuple' uses undefined class 'std::tuple<_Types...>'
+c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\include\scenegraph\component\rendercomponent.h(29): error C3376: 'RenderComponent::tuple': only static data member templates are allowed
+  Generating Code...

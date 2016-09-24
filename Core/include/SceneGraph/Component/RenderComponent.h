@@ -1,6 +1,8 @@
 #ifndef _RENDERCOMPONENT_H
 #define _RENDERCOMPONENT_H
 
+#include <tuple>
+
 #include "SceneGraph\Object\GameObjects\GameObject.h"
 #include "SceneGraph\Scene\Scene.h"
 
