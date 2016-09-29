@@ -62,6 +62,7 @@
   <ItemGroup>
     <ClInclude Include="include\Core\Engine.h" />
     <ClInclude Include="include\Core\Game\AbstractGame.h" />
+    <ClInclude Include="include\Core\Rendering\Material.h" />
     <ClInclude Include="include\Core\Rendering\Renderer.h" />
     <ClInclude Include="include\Core\Settings\ApplicationSettings.h" />
     <ClInclude Include="include\Core\Settings\GameSettings.h" />
@@ -106,6 +107,7 @@
     <ClInclude Include="include\Helpers\Math\Vector2D.h" />
     <ClInclude Include="include\Helpers\ObjectCounter.h" />
     <ClInclude Include="include\Helpers\Singleton.h" />
+    <ClInclude Include="include\Helpers\TypeChecker.h" />
     <ClInclude Include="include\Interfaces\IDrawable.h" />
     <ClInclude Include="include\Interfaces\IFillableShape.h" />
     <ClInclude Include="include\Interfaces\IWindow.h" />
