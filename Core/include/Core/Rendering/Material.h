@@ -1,55 +1,67 @@
 #ifndef _MATERIAL_H
 
-#include <map>
+#include <vector>
 
 #include "GLM\glm.hpp"
+
+#include "Core\Rendering\Base\TextureBase.h"
+
+#include "SceneGraph\Component\Component.h"
 
 #include "Defines\shader.h"
 #include "Defines\texture.h"
 
-namespace Material_Internal {
-	struct ShaderUniforms {
-		std::map<const char *, int> intUniforms;
-		std::map<const char *, float> floatUniforms;
-		std::map<const char *, glm::vec3> vec3Uniforms;
-		std::map<const char *, glm::mat4> mat4Uniforms;
-		std::map<const char *, Texture> textureUniforms;
-		std::map<const char *, float * > floatArrayUniforms;
-	};
-}
+class Camera;
 
-class Material {
+enum ShaderParamType { 
+	SPT_FLOAT,
+	SPT_VECTOR2,
+	SPT_VECTOR3,
+	SPT_VECTOR4,
+	SPT_INT,
+	SPT_TEXTURE,
+	SPT_SHADOW_SETUP,
+	SPT_SHADER_SETUP_NAME
+};
+
+struct ShaderParameters {
+	int id;
+	ShaderParamType paramType;
+	union ShaderValue {
+		float f[ 4 ];
+		int integer[ 2 ];
+		Camera *camera;
+		char *cameraChar;
+	} shaderValue;
+};
+
+class Material : public Component {
 public:
-	Material() : shader( { 0 } ) {}
-	Material( Shader s ) : shader( s ) {}
-	Material( const char * vertShader, const char * fragShader ) {
-		shader = Shader_Internal::Make( vertShader, fragShader );
-	}
+	Material( Shader * shader );
+	virtual ~Material();
+	void Bind();
 
-public:
-	void SetInt( const char * uniformName, int value );
-	void SetFloat( const char * uniformName, float value );
-	void SetVec3( const char * uniformName, glm::vec3 value );
-	void SetMat4( const char * uniformName, glm::mat4 value );
-	void SetTexture( const char * uniformName, Texture value );
-	void SetArray( const char * uniformName, float value[ 16 ] );
-
-	int GetInt( const char * uniformName );
-	float GetFloat( const char * uniformName );
-	glm::vec3 GetVec3( const char * uniformName );
-	glm::mat4 GetMat4( const char * uniformName );
-	Texture GetTexture( const char * uniformName );
-	float * GetArray( const char * uniformName );
-
-	/// Use this during the draw call to construct the shader
-	bool BuildMaterial();
-
-	operator bool() const { return shader; }
-
-private:
+	bool SetVector2( const char * name, glm::vec2 vec );
+	bool SetVector3( const char * name, glm::vec3 vec );
+	bool SetVector4( const char * name, glm::vec4 vec );
+	bool SetFloat( const char * name, float f );
+	bool SetTexture( const char * name, TextureBase * texture );
+	bool SetInt( const char * name, int i );
+	bool SetShadowSetup( const char * name, const char * cameraName );
 	
-	Shader shader;
-	Material_Internal::ShaderUniforms uniforms;
+	void SetName( const char * name ) { this->name = name; }
+	// Create a copy of the material
+	Material * Instance();
+private:
+	Material( const Material& orig ); // Disallows the copy constructor
+	Material& operator = ( const Material& other ); // Disallows the copy constructor
+
+	void AddParameter( ShaderParameters & param );
+
+	Shader * shader;
+	std::vector<TextureBase*> textures;
+	const char * name;
+	std::vector<ShaderParameters> parameters;
 };
 
 #endif // !_MATERIAL_H

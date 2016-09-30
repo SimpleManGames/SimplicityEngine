@@ -27,7 +27,6 @@ public:
 private:
 	Geometry geometry;
 	Shader shader;
-	Material material;
 	Framebuffer frame;
 };
 

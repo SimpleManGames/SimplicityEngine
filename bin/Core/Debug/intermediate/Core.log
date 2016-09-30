@@ -1,10 +1,5 @@
 ﻿  RenderComponent.cpp
   Material.cpp
+  TextureBase.cpp
   Generating Code...
-c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\src\core\rendering\material.cpp(53): warning C4715: 'Material::GetInt': not all control paths return a value
-c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\src\core\rendering\material.cpp(60): warning C4715: 'Material::GetFloat': not all control paths return a value
-c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\src\core\rendering\material.cpp(67): warning C4715: 'Material::GetVec3': not all control paths return a value
-c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\src\core\rendering\material.cpp(74): warning C4715: 'Material::GetMat4': not all control paths return a value
-c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\src\core\rendering\material.cpp(81): warning C4715: 'Material::GetTexture': not all control paths return a value
-c:\users\riley.smith\documents\visual studio 2015\projects\simplicityengine\core\src\core\rendering\material.cpp(88): warning C4715: 'Material::GetArray': not all control paths return a value
   Core.vcxproj -> C:\Users\riley.smith\Documents\Visual Studio 2015\Projects\SimplicityEngine\\bin\Core\Debug\Core.lib

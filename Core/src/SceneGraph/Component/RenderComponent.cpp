@@ -11,9 +11,6 @@ bool RenderComponent::Initialize() {
 
 void RenderComponent::Draw() {
 	Draw_Internal::BeginDraw( shader, geometry, frame );
-
-	material.BuildMaterial();
-
 	Draw_Internal::EndDraw( shader, geometry, frame );
 }
 
