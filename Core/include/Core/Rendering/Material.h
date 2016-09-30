@@ -1,7 +1,6 @@
 #ifndef _MATERIAL_H
 
 #include <map>
-#include <string>
 
 #include "GLM\glm.hpp"
 
@@ -10,41 +9,47 @@
 
 namespace Material_Internal {
 	struct ShaderUniforms {
-		std::map<std::string, int> intUniforms;
-		std::map<std::string, float> floatUniforms;
-		std::map<std::string, glm::vec3 &> vec3Uniforms;
-		std::map<std::string, glm::mat4 &> mat4Uniforms;
-		std::map<std::string, Texture &> textureUniforms;
-		std::map<std::string, float[ 16 ] > floatArrayUniforms;
+		std::map<const char *, int> intUniforms;
+		std::map<const char *, float> floatUniforms;
+		std::map<const char *, glm::vec3> vec3Uniforms;
+		std::map<const char *, glm::mat4> mat4Uniforms;
+		std::map<const char *, Texture> textureUniforms;
+		std::map<const char *, float * > floatArrayUniforms;
 	};
 }
 
 class Material {
-	Material( Shader s ) : shader(s) {}
+public:
+	Material() : shader( { 0 } ) {}
+	Material( Shader s ) : shader( s ) {}
 	Material( const char * vertShader, const char * fragShader ) {
 		shader = Shader_Internal::Make( vertShader, fragShader );
 	}
 
-
 public:
-	template<typename T>
-	void SetUniform( std::string uniformName, T val );
-	template<typename T>
-	T GetUniform( std::string uniformName );
+	void SetInt( const char * uniformName, int value );
+	void SetFloat( const char * uniformName, float value );
+	void SetVec3( const char * uniformName, glm::vec3 value );
+	void SetMat4( const char * uniformName, glm::mat4 value );
+	void SetTexture( const char * uniformName, Texture value );
+	void SetArray( const char * uniformName, float value[ 16 ] );
+
+	int GetInt( const char * uniformName );
+	float GetFloat( const char * uniformName );
+	glm::vec3 GetVec3( const char * uniformName );
+	glm::mat4 GetMat4( const char * uniformName );
+	Texture GetTexture( const char * uniformName );
+	float * GetArray( const char * uniformName );
+
+	/// Use this during the draw call to construct the shader
+	bool BuildMaterial();
+
+	operator bool() const { return shader; }
 
 private:
+	
 	Shader shader;
-	Material_Internal::ShaderUniforms shaderDetails;
+	Material_Internal::ShaderUniforms uniforms;
 };
 
 #endif // !_MATERIAL_H
-
-template<typename T>
-inline void Material::SetUniform( std::string uniformName, T val ) {
-	
-}
-
-template<typename T>
-inline T Material::GetUniform( std::string uniformName ) {
-	return T();
-}

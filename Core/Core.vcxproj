@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Rendering\Material.cpp" />
     <ClCompile Include="src\Defines\framebuffer.cpp" />
     <ClCompile Include="src\Defines\geometry.cpp" />
     <ClCompile Include="src\Defines\shader.cpp" />

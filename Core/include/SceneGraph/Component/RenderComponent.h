@@ -1,8 +1,6 @@
 #ifndef _RENDERCOMPONENT_H
 #define _RENDERCOMPONENT_H
 
-#include <tuple>
-
 #include "SceneGraph\Object\GameObjects\GameObject.h"
 #include "SceneGraph\Scene\Scene.h"
 
@@ -14,6 +12,7 @@
 #include "Defines\geometry.h"
 #include "Defines\shader.h"
 #include "Defines\framebuffer.h"
+#include "Core\Rendering\Material.h"
 
 class RenderComponent : public Component, public IDrawable {
 public:
@@ -28,6 +27,7 @@ public:
 private:
 	Geometry geometry;
 	Shader shader;
+	Material material;
 	Framebuffer frame;
 };
 

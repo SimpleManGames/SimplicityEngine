@@ -47,4 +47,13 @@ private:
 	std::vector<LogData> logMessages;
 };
 
+inline std::tstring ToWString( const std::string &s ) {
+	std::tstring wsTmp( s.begin(), s.end() );
+	return wsTmp;
+}
+
+inline std::tstring ToWString( const char * s ) {
+	return ToWString( std::string( s ) );
+}
+
 #endif

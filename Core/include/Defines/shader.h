@@ -2,7 +2,9 @@
 #define _SHADER_H
 
 struct Shader {
-	unsigned handle;
+	unsigned handle = -1;
+
+	operator bool() const { return handle != -1; }
 
 	template<typename T>
 	operator T() { return T(); }
