@@ -6,7 +6,7 @@
 #include "Helpers\Manager.h"
 
 #include "Defines\texture.h"
-#include "Defines\shader.h"
+#include "Core\Rendering\Shader.h"
 #include "Defines\geometry.h"
 #include "Defines\framebuffer.h"
 #include "Defines\vertex.h"

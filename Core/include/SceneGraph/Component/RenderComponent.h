@@ -10,7 +10,7 @@
 #include "Interfaces\IDrawable.h"
 
 #include "Defines\geometry.h"
-#include "Defines\shader.h"
+#include "Core\Rendering\Shader.h"
 #include "Defines\framebuffer.h"
 #include "Core\Rendering\Material.h"
 
@@ -25,9 +25,6 @@ public:
 	virtual bool Shutdown();
 
 private:
-	Geometry geometry;
-	Shader shader;
-	Framebuffer frame;
 };
 
 #endif // !_RENDERCOMPONENT_H

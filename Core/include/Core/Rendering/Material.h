@@ -8,7 +8,7 @@
 
 #include "SceneGraph\Component\Component.h"
 
-#include "Defines\shader.h"
+#include "Core\Rendering\Shader.h"
 #include "Defines\texture.h"
 
 class Camera;

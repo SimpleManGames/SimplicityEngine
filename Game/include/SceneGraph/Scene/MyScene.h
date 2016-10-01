@@ -27,18 +27,6 @@ public:
 	virtual bool Shutdown();
 
 private:
-	glm::mat4 proj, view, model;
-	Camera * camera;
-
-	SceneObject * cubeObject;
-	
-	Geometry cube;
-
-	const char * vertS = "#version 150\n" "in vec4 position;" "void main() { gl_Position = position; }";
-	const char * fragS = "#version 150\n" "out vec4 outColor;" "void main() { outColor = gl_Position; }";
-
-	Framebuffer frame;
-	Framebuffer screen = { 0, 1280, 720, 1 };
 };
 
 #endif

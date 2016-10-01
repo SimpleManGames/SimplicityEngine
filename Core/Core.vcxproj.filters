@@ -165,9 +165,6 @@
     <ClInclude Include="include\Defines\geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Defines\shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\SceneGraph\Component\RenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -199,6 +196,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Rendering\Base\TextureBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Rendering\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Rendering\Base\ShaderDataSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -311,9 +314,6 @@
     <ClCompile Include="src\Defines\texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Defines\shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Defines\geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -324,6 +324,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\Rendering\Base\TextureBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Rendering\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

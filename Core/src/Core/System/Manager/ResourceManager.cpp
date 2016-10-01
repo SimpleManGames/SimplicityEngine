@@ -9,7 +9,6 @@ bool ResourceManager::Initialize() {
 }
 
 bool ResourceManager::Shutdown() {
-	for each( auto s in shaders ) Shader_Internal::Free( s.second );
 	for each( auto g in objects ) Geometry_Internal::Free( g.second );
 	for each( auto t in textures ) Texture_Internal::Free( t.second );
 	for each( auto f in framebuffers ) Framebuffer_Internal::Free( f.second );
@@ -23,7 +22,6 @@ bool ResourceManager::Shutdown() {
 //}
 
 bool ResourceManager::Add( const char * name, const char * v, const char * f ) {
-	shaders[ name ] = Shader_Internal::Make( v, f );
 	return true;
 }
 
