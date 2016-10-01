@@ -22,6 +22,7 @@
     <ClCompile Include="src\Core\Rendering\Base\TextureBase.cpp" />
     <ClCompile Include="src\Core\Rendering\Material.cpp" />
     <ClCompile Include="src\Core\Rendering\Shader.cpp" />
+    <ClCompile Include="src\Core\Rendering\ShaderFileDataSource.cpp" />
     <ClCompile Include="src\Defines\framebuffer.cpp" />
     <ClCompile Include="src\Defines\geometry.cpp" />
     <ClCompile Include="src\Defines\texture.cpp" />
@@ -64,11 +65,12 @@
   <ItemGroup>
     <ClInclude Include="include\Core\Engine.h" />
     <ClInclude Include="include\Core\Game\AbstractGame.h" />
-    <ClInclude Include="include\Core\Rendering\Base\ShaderDataSource.h" />
+    <ClInclude Include="include\Core\Rendering\ShaderDataSource.h" />
     <ClInclude Include="include\Core\Rendering\Base\TextureBase.h" />
     <ClInclude Include="include\Core\Rendering\Material.h" />
     <ClInclude Include="include\Core\Rendering\Renderer.h" />
     <ClInclude Include="include\Core\Rendering\Shader.h" />
+    <ClInclude Include="include\Core\Rendering\ShaderFileDataSource.h" />
     <ClInclude Include="include\Core\Settings\ApplicationSettings.h" />
     <ClInclude Include="include\Core\Settings\GameSettings.h" />
     <ClInclude Include="include\Core\Settings\PhyxSettings.h" />
