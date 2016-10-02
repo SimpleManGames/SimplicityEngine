@@ -76,7 +76,7 @@ inline std::vector<T*> GameObject::GetComponentsOfType() const {
 			continue;
 		retval.push_back( newC );
 	}
-	return nullptr;
+	return retval;
 }
 
 #endif

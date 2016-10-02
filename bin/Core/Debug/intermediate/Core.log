@@ -1,7 +1,18 @@
 ﻿  Scene.cpp
   SceneObject.cpp
   GameObject.cpp
-  RenderComponent.cpp
+  TransformComponent.cpp
+c:\users\riley\documents\visual studio 2015\projects\simplicityengine\core\include\scenegraph\object\gameobjects\gameobject.h(79): error C2440: 'return': cannot convert from 'nullptr' to 'std::vector<TransformComponent *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=TransformComponent *
+          ]
+  c:\users\riley\documents\visual studio 2015\projects\simplicityengine\core\include\scenegraph\object\gameobjects\gameobject.h(79): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+  c:\users\riley\documents\visual studio 2015\projects\simplicityengine\core\src\scenegraph\component\transformcomponent.cpp(129): note: see reference to function template instantiation 'std::vector<TransformComponent *,std::allocator<_Ty>> GameObject::GetComponentsOfType<TransformComponent>(void) const' being compiled
+          with
+          [
+              _Ty=TransformComponent *
+          ]
   Component.cpp
+  RenderComponent.cpp
   Generating Code...
-  Core.vcxproj -> C:\Users\Riley\documents\visual studio 2015\Projects\SimplicityEngine\\bin\Core\Debug\Core.lib
