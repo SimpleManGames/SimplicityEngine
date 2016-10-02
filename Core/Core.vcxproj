@@ -55,6 +55,7 @@
     <ClCompile Include="src\Interfaces\IWindow.cpp" />
     <ClCompile Include="src\Core\Rendering\Renderer.cpp" />
     <ClCompile Include="src\SceneGraph\Component\Component.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\TransformComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Object.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\GameObject.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\SceneObject.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="include\Interfaces\IWindow.h" />
     <ClInclude Include="include\SceneGraph\Component\Component.h" />
     <ClInclude Include="include\SceneGraph\Component\RenderComponent.h" />
+    <ClInclude Include="include\SceneGraph\Component\TransformComponent.h" />
     <ClInclude Include="include\SceneGraph\Object.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\GameObject.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\SceneObject.h" />

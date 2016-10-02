@@ -13,9 +13,8 @@ public:
 	virtual void Update();
 	virtual void Draw();
 	virtual bool Shutdown();
-
 private:
-
+	
 };
 
 #endif

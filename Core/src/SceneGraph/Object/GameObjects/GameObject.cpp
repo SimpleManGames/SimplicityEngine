@@ -23,7 +23,7 @@ bool GameObject::Initialize() {
 		if( !obj->Initialize() )
 			return false;
 	}
-	for( GameObject* child_obj : this->childeren ) {
+	for( GameObject* child_obj : this->children ) {
 		if( child_obj->Initialize() )
 			continue;
 
@@ -38,7 +38,7 @@ void GameObject::Update() {
 		if( obj->isActive() )
 			obj->Update();
 	}
-	for( GameObject* child_obj : this->childeren ) {
+	for( GameObject* child_obj : this->children ) {
 		if( child_obj->isActive() )
 			child_obj->Update();
 	}
@@ -50,12 +50,12 @@ bool GameObject::Shutdown() {
 		SafeDelete( obj );
 	}
 	this->components.clear();
-	for( GameObject* child_obj : this->childeren ) {
+	for( GameObject* child_obj : this->children ) {
 		if( !child_obj->Shutdown() )
 			return false;
 		SafeDelete( child_obj );
 	}
-	this->childeren.clear();
+	this->children.clear();
 	return true;
 }
 
@@ -72,10 +72,10 @@ GameObject* GameObject::GetParent() const {
 	return this->parent;
 }
 
-std::vector<GameObject*> GameObject::GetChilderen() const {
-	return this->childeren;
+std::vector<GameObject*> GameObject::GetChildren() const {
+	return this->children;
 }
-std::vector<Component*> GameObject::GetComponents() const {
+std::vector<Component*> GameObject::GetAllComponents() const {
 	return this->components;
 }
 
@@ -96,17 +96,17 @@ void GameObject::RemoveComponent( Component* component ) {
 	}
 }
 void GameObject::AddChild( GameObject* child ) {
-	std::vector<GameObject*>::iterator it = std::find( this->childeren.begin(), this->childeren.end(), child );
-	if( it == this->childeren.end() ) {
-		this->childeren.push_back( child );
+	std::vector<GameObject*>::iterator it = std::find( this->children.begin(), this->children.end(), child );
+	if( it == this->children.end() ) {
+		this->children.push_back( child );
 		child->SetParent( this );
 		child->SetScene( GetScene() );
 	}
 }
 void GameObject::RemoveChild( GameObject* child ) {
-	std::vector<GameObject*>::iterator it = std::find( this->childeren.begin(), this->childeren.end(), child );
-	if( it != this->childeren.end() ) {
-		this->childeren.erase( it );
+	std::vector<GameObject*>::iterator it = std::find( this->children.begin(), this->children.end(), child );
+	if( it != this->children.end() ) {
+		this->children.erase( it );
 		SafeDelete( ( *it ) );
 	}
 }

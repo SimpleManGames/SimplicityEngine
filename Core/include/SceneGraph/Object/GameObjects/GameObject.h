@@ -31,13 +31,15 @@ public:
 
 	void SetScene( Scene* scene );
 	Scene* GetScene() const;
+
 	void SetParent( GameObject* parent );
 	GameObject* GetParent() const;
 
-	std::vector<GameObject*> GetChilderen() const;
+	std::vector<GameObject*> GetChildren() const;
 
 	template <typename T> T* GetComponent() const;
-	std::vector<Component*> GetComponents() const;
+	template <typename T> std::vector<T*> GetComponentsOfType() const;
+	std::vector<Component*> GetAllComponents() const;
 
 	void AddComponent( Component* component );
 	void RemoveComponent( Component* component );
@@ -46,7 +48,7 @@ public:
 	void RemoveChild( GameObject* object );
 
 private:
-	std::vector<GameObject*> childeren;
+	std::vector<GameObject*> children;
 	std::vector<Component*> components;
 
 	GameObject* parent;
@@ -55,15 +57,25 @@ private:
 };
 
 template <typename T>
-T* GameObject::GetComponent() const {
+inline T* GameObject::GetComponent() const {
 	for( Component* c : this->components ) {
 		T* newC = dynamic_cast< T* >( c );
 		if( newC == nullptr )
 			continue;
-
 		return newC;
 	}
+	return nullptr;
+}
 
+template<typename T>
+inline std::vector<T*> GameObject::GetComponentsOfType() const {
+	std::vector<T*> retval;
+	for( Component* c : this->components ) {
+		T* newC = dynamic_cast< T* >( c );
+		if( newC == nullptr )
+			continue;
+		retval.push_back( newC );
+	}
 	return nullptr;
 }
 

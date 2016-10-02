@@ -12,7 +12,7 @@ void SceneObject::Update() {
 	return GameObject::Update();
 }
 void SceneObject::Draw() {
-	for( Component* obj : GetComponents() ) {
+	for( Component* obj : GetAllComponents() ) {
 		IDrawable* drawable_obj = dynamic_cast< IDrawable* >( obj );
 		if( drawable_obj == nullptr )
 			continue;
@@ -20,7 +20,7 @@ void SceneObject::Draw() {
 		if( drawable_obj->GetCanDraw() )
 			drawable_obj->Draw();
 	}
-	for( GameObject* obj : GetChilderen() ) {
+	for( GameObject* obj : GetChildren() ) {
 		IDrawable* drawable_obj = dynamic_cast< IDrawable* >( obj );
 		if( drawable_obj == nullptr )
 			continue;

@@ -1,2 +1,7 @@
-﻿  Shader.cpp
+﻿  Scene.cpp
+  SceneObject.cpp
+  GameObject.cpp
+  RenderComponent.cpp
+  Component.cpp
+  Generating Code...
   Core.vcxproj -> C:\Users\Riley\documents\visual studio 2015\Projects\SimplicityEngine\\bin\Core\Debug\Core.lib
