@@ -4,6 +4,8 @@
 #include "SceneGraph\Object\GameObjects\GameObject.h"
 #include "Interfaces\IDrawable.h"
 
+#include "SceneGraph\Component\TransformComponent.h"
+
 class SceneObject : public GameObject, public IDrawable {
 public:
 	SceneObject( const std::tstring& name = _T( "" ) );
@@ -14,7 +16,7 @@ public:
 	virtual void Draw();
 	virtual bool Shutdown();
 private:
-	
+	TransformComponent * transform;
 };
 
 #endif
